@@ -2,17 +2,39 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) 
     {
-        vector<int>v;
-        for(auto it1=nums.begin();it1!=nums.end();it1++)
-        {
-            auto it2=find(it1+1,nums.end(),target-*it1);
-            if(it2!=nums.end())
-            {
-                v.push_back(it1-nums.begin());
-                v.push_back(it2-nums.begin());
-                break;
-            }
+//         vector<int>v;
+//         for(auto it1=nums.begin();it1!=nums.end();it1++)
+//         {
+//             auto it2=find(it1+1,nums.end(),target-*it1);
+//             if(it2!=nums.end())
+//             {
+//                 v.push_back(it1-nums.begin());
+//                 v.push_back(it2-nums.begin());
+//                 break;
+//             }
             
+//         }
+//         return v;
+        
+        
+//         method 2
+        
+        vector<int>v;
+        
+        map<int,int>mp;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(mp.find(target-nums[i])!=mp.end())
+            {
+                
+                v.push_back(mp.find(target-nums[i])->second);
+                v.push_back(i);
+                return v;
+            }
+            else
+            {
+                mp[nums[i]]=i;
+            }
         }
         return v;
     }
